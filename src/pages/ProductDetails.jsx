@@ -1,36 +1,48 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState, useCallback } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import LoadingSpinner from "../components/LoadingSpinner";
 import Error from "../components/Error";
-import { useCart } from "../context/CartContext"; // Import useCart
+import { useCart } from "../context/CartContext";
+import { Button } from "@nextui-org/react";
+import { useContext } from 'react';
+import { AuthContext } from '../context/Authcontext';
 
 const ProductDetails = () => {
   const { id } = useParams();
-  const { addToCart, removeFromCart, isInCart } = useCart(); // Use the cart context
+  const { addToCart, removeFromCart, isInCart } = useCart();
+  const { user } = useContext(AuthContext); // Access user information from AuthContext
+  const navigate = useNavigate(); // For navigation purposes
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isAdded, setIsAdded] = useState(false);
+  const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
 
-  useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const response = await axios.get(`https://fakestoreapi.com/products/${id}`);
-        setProduct(response.data);
-        setIsAdded(isInCart(response.data.id));
-      } catch (err) {
-        console.error("Error fetching product:", err);
-        setError("Failed to fetch product details");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProduct();
+  const fetchProduct = useCallback(async () => {
+    try {
+      const response = await axios.get(`https://fakestoreapi.com/products/${id}`);
+      setProduct(response.data);
+      setIsAdded(isInCart(response.data.id));
+    } catch (err) {
+      console.error("Error fetching product:", err);
+      setError("Failed to fetch product details");
+    } finally {
+      setLoading(false);
+    }
   }, [id, isInCart]);
 
+  useEffect(() => {
+    fetchProduct();
+  }, [fetchProduct]);
+
   const handleCartAction = () => {
+    if (!user.isLogin) {
+      // Redirect to login page if not logged in
+      navigate('/signin');
+      return;
+    }
+
     if (isAdded) {
       removeFromCart(product.id);
       setIsAdded(false);
@@ -40,33 +52,48 @@ const ProductDetails = () => {
     }
   };
 
+  const truncateDescription = (description, limit = 100) => {
+    if (description.length <= limit) return description;
+    return `${description.substring(0, limit)}...`;
+  };
+
   if (loading) return <LoadingSpinner />;
   if (error) return <Error message={error} />;
 
   return (
-    <div className="p-4 bg-gradient-to-br from-gray-100 to-gray-300 min-h-screen w-screen">
-      <div className="max-w-screen-lg mx-auto bg-white p-6 sm:p-8 md:p-10 rounded-xl shadow-xl mt-8 mb-16">
-        <div className="flex flex-col-reverse md:flex-row items-center md:items-start">
-          <div className="md:w-1/2 mb-6 md:mb-0">
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-50 to-gray-200 p-4 w-screen">
+      <div className="bg-white max-w-md w-full p-4 rounded-lg shadow-lg border border-gray-200">
+        <div className="flex flex-col md:flex-row items-center md:items-start">
+          <div className="w-full md:w-1/2 mb-4 md:mb-0">
             <img
               src={product.image}
               alt={product.title}
-              className="w-full h-auto object-cover object-center rounded-xl shadow-lg transform transition-transform duration-300 hover:scale-105"
+              className="w-full h-36 md:h-48 object-cover object-center rounded-lg shadow-md transition-transform duration-300 transform hover:scale-105"
             />
           </div>
-          <div className="md:w-1/2 flex flex-col justify-between space-y-6">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900">{product.title}</h1>
-            <p className="text-base sm:text-lg md:text-xl font-medium text-gray-600">{product.category}</p>
-            <p className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-800">${product.price}</p>
-            <p className="text-base sm:text-lg md:text-xl text-gray-700">{product.description}</p>
-            <button
+          <div className="w-full md:w-1/2 md:pl-4 flex flex-col">
+            <h1 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-1">{product.title}</h1>
+            <p className="text-sm sm:text-base font-medium text-gray-600 mb-1">{product.category}</p>
+            <p className="text-lg sm:text-xl font-semibold text-gray-800 mb-2">${product.price}</p>
+            <p className="text-sm sm:text-base text-gray-700 mb-3">
+              {isDescriptionExpanded ? product.description : truncateDescription(product.description)}
+              <button
+                onClick={() => setIsDescriptionExpanded(!isDescriptionExpanded)}
+                className="text-blue-500 hover:text-blue-600 ml-2 text-xs font-medium underline"
+              >
+                {isDescriptionExpanded ? "Show Less" : "Read More"}
+              </button>
+            </p>
+            <Button
               onClick={handleCartAction}
-              className={`px-4 py-2 sm:px-6 sm:py-3 rounded-full font-semibold transition-all duration-300 shadow-lg transform ${
-                isAdded ? "bg-red-500 text-white hover:bg-red-600" : "bg-blue-500 text-white hover:bg-blue-600"
+              className={`px-4 py-2 rounded-full font-semibold text-white transition-all duration-300 transform ${
+                isAdded
+                  ? "bg-red-600 hover:bg-red-700 shadow-md"
+                  : "bg-purple-600 hover:bg-green-700 shadow-md"
               }`}
             >
               {isAdded ? "Remove from Cart" : "Add to Cart"}
-            </button>
+            </Button>
           </div>
         </div>
       </div>
