@@ -13,7 +13,7 @@ import HomePage from "./pages/HomePage";
 import { AuthContextProvider } from "./context/Authcontext";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
-import ProductDetails from "./pages/ProductDetails"; // Import ProductDetails
+import ProductDetails from "./pages/ProductDetails"; 
 import { CartProvider } from "./context/CartContext";
 import CartPage from "./pages/CartPage";
 import Privacy from "./pages/Privacy";
@@ -83,8 +83,8 @@ function App() {
               <Route path="/signup" element={<Signup />} />
               <Route path="/Privacy" element={<Privacy/>} />
 
-              <Route path="/cart" element={<CartPage />} /> {/* Add route for CartPage */}
-              {/* <Route path="/checkout" element={<CheckoutPage />} /> */}
+              <Route path="/cart" element={<CartPage />} />
+           
             </Routes>
           </div>
           <Footer />

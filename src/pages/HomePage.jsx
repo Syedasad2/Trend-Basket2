@@ -7,10 +7,8 @@ const HomePage = () => {
     <div className="bg-white text-black min-h-screen flex flex-col">
       {/* Hero Section */}
       <div className="relative bg-[#FFEBE2] text-[#2C3E50] text-center flex flex-col items-center justify-center min-h-screen px-6 py-12">
-      {/* Background gradient removed */}
       <div className="absolute inset-0 bg-gradient-to-r from-white to-[#FFEBE2] opacity-90"></div>
 
-      {/* Shopping-related background elements */}
       <div className="absolute z-0 top-1/4 left-1/4 transform -translate-x-1/4 -translate-y-1/4 opacity-30">
         <svg
           xmlns="http://www.w3.org/2000/svg"

@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import { Input, Button } from "@nextui-org/react";
 import { GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { Link, useNavigate } from "react-router-dom"; // Import useNavigate for redirection
+import { Link, useNavigate } from "react-router-dom"; 
 
 function Signin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false); // Add loading state
-  const navigate = useNavigate(); // Initialize useNavigate
+  const [loading, setLoading] = useState(false); 
+  const navigate = useNavigate(); 
 
   const handleSignInWithGoogle = () => {
-    setLoading(true); // Start loading
+    setLoading(true); 
     const provider = new GoogleAuthProvider();
     provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
 
@@ -22,7 +22,7 @@ function Signin() {
         const token = credential.accessToken;
         const user = result.user;
         console.log('User:', user);
-        navigate('/'); // Redirect to home page upon successful sign-in
+        navigate('/'); 
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -36,16 +36,16 @@ function Signin() {
         console.error('Credential:', credential);
       })
       .finally(() => {
-        setLoading(false); // Stop loading
+        setLoading(false); 
       });
   };
 
   const handleSignInWithEmailPassword = async () => {
-    setLoading(true); // Start loading
+    setLoading(true); 
     try {
       await signInWithEmailAndPassword(auth, email, password);
       console.log('User signed in with email:', email);
-      navigate('/'); // Redirect to home page upon successful sign-in
+      navigate('/'); 
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -53,7 +53,7 @@ function Signin() {
       console.error('Error Code:', errorCode);
       console.error('Error Message:', errorMessage);
     } finally {
-      setLoading(false); // Stop loading
+      setLoading(false); 
     }
   };
 
@@ -70,7 +70,7 @@ function Signin() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter your email"
-            className="w-full bg-white border-gray-300 text-gray-900" // White background for input
+            className="w-full bg-white border-gray-300 text-gray-900" 
           />
           <Input
             isClearable
@@ -80,14 +80,14 @@ function Signin() {
             onChange={(e) => setPassword(e.target.value)}
             variant="bordered"
             placeholder="Password"
-            className="w-full bg-white border-gray-300 text-gray-900" // White background for input
+            className="w-full bg-white border-gray-300 text-gray-900" 
           />
           {error && <p className="text-red-400 text-center">{error}</p>}
           <Button
             radius="full"
             className="w-full bg-gradient-to-r from-pink-600 to-yellow-500 text-white shadow-lg hover:shadow-2xl transition-shadow duration-300"
             onClick={handleSignInWithEmailPassword}
-            isLoading={loading} // Add loading state to button
+            isLoading={loading} 
           >
             Log In
           </Button>
@@ -96,7 +96,7 @@ function Signin() {
             radius="full"
             className="w-full bg-blue-400 text-white shadow-lg hover:shadow-2xl transition-shadow duration-300"
             onClick={handleSignInWithGoogle}
-            isLoading={loading} // Add loading state to button
+            isLoading={loading} 
           >
             Sign In with Google
           </Button>

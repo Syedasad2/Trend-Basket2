@@ -1,8 +1,8 @@
 import { Input, Button } from "@nextui-org/react";
 import { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../utils/firebase"; // Ensure firebase is properly initialized
-import { useNavigate } from "react-router-dom"; // Import useNavigate for redirection
+import { auth } from "../utils/firebase"; 
+import { useNavigate } from "react-router-dom"; 
 
 function Signup() {
   const [email, setEmail] = useState('');
@@ -11,12 +11,12 @@ function Signup() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate(); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Basic validation
+
     if (!email || !password || !username) {
       setError('Please fill out all fields.');
       return;
@@ -24,13 +24,13 @@ function Signup() {
 
     try {
       setLoading(true);
-      // Firebase createUserWithEmailAndPassword
+     
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // After successful signup
+
       console.log("Signed up with:", user);
-      setError(''); // Clear the error
+      setError('');
 
       // Redirect to home page
       navigate('/'); // Redirect to home page
