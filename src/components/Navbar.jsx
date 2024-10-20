@@ -1,10 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { FaHome, FaBox, FaInfoCircle, FaEnvelope, FaSignOutAlt, FaShoppingCart } from 'react-icons/fa';
-import { ImCart } from "react-icons/im";
+import { FaHome, FaDollyFlatbed, FaInfoCircle, FaRocketchat, FaSignOutAlt, FaShoppingCart,FaEarlybirds } from 'react-icons/fa';
 import { AuthContext } from '../context/Authcontext';
 import { useCart } from '../context/CartContext'; 
-import { Avatar } from '@nextui-org/react';
 
 const Navbar = () => {
   const { user, handleSignOut } = useContext(AuthContext);
@@ -34,21 +32,21 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`bg-white text-orange-900 shadow-lg fixed top-0 w-full z-50 transition-transform ${
+      className={`bg-white text-orange-900 fixed top-0 w-full z-50 transition-transform ${
         isScrolled ? '-translate-y-full' : 'translate-y-0'
       }`}
     >
       <div className="container mx-auto flex justify-between items-center p-4">
         <Link to="/" className="text-3xl font-bold flex items-center tracking-wider hover:text-gray-300 transition-colors">
-          <ImCart className="mr-2 text-orange-600" />
+          <FaEarlybirds className="mr-2 text-orange-600" />
           <span className="text-orange-600">Trend Basket</span>
         </Link>
 
         <ul className="flex space-x-8 items-center">
           <NavItem to="/" icon={<FaHome />} label="Home" />
-          <NavItem to="/products" icon={<FaBox />} label="Products" />
+          <NavItem to="/products" icon={<FaDollyFlatbed />} label="Products" />
           <NavItem to="/about" icon={<FaInfoCircle />} label="About" />
-          <NavItem to="/contact" icon={<FaEnvelope />} label="Contact" />
+          <NavItem to="/contact" icon={<FaRocketchat />} label="Contact" />
 
           {/* Cart Dropdown */}
           <li className="relative">
@@ -91,13 +89,6 @@ const Navbar = () => {
           {/* Auth section */}
           {user.isLogin ? (
             <>
-              <li className="relative">
-                <Avatar 
-                  src={user.userInfo.photoURL} 
-                  size="md" 
-                  className="border-2 border-white hover:border-gray-300 transition-all duration-300" 
-                />
-              </li>
               <li>
                 <button
                   onClick={handleSignOut}

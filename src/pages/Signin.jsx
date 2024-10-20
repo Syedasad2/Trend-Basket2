@@ -58,9 +58,9 @@ function Signin() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-800 via-gray-900 to-black text-white w-screen p-4">
-      <div className="bg-gray-800 p-10 rounded-lg shadow-lg max-w-md w-full border border-gray-700">
-        <h2 className="text-4xl font-bold mb-8 text-center text-gray-100">Sign In</h2>
+    <div className="flex items-center justify-center min-h-screen bg-white text-gray-900 w-screen p-4"> {/* Changed background to white */}
+      <div className="bg-white p-10 rounded-lg  max-w-md w-full border border-gray-300"> {/* Container background white with border */}
+        <h2 className="text-4xl font-bold mb-8 text-center text-gray-900">Sign In</h2>
         <form className="space-y-6">
           <Input
             isClearable
@@ -70,7 +70,7 @@ function Signin() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter your email"
-            className="w-full bg-gray-900 border-gray-700"
+            className="w-full bg-white border-gray-300 text-gray-900" // White background for input
           />
           <Input
             isClearable
@@ -80,7 +80,7 @@ function Signin() {
             onChange={(e) => setPassword(e.target.value)}
             variant="bordered"
             placeholder="Password"
-            className="w-full bg-gray-900 border-gray-700"
+            className="w-full bg-white border-gray-300 text-gray-900" // White background for input
           />
           {error && <p className="text-red-400 text-center">{error}</p>}
           <Button
@@ -91,10 +91,10 @@ function Signin() {
           >
             Log In
           </Button>
-          <h3 className="text-center text-lg text-gray-300">OR</h3>
+          <h3 className="text-center text-lg text-gray-600">OR</h3>
           <Button
             radius="full"
-            className="w-full bg-gradient-to-r from-blue-600 to-blue-500 text-white shadow-lg hover:shadow-2xl transition-shadow duration-300"
+            className="w-full bg-blue-400 text-white shadow-lg hover:shadow-2xl transition-shadow duration-300"
             onClick={handleSignInWithGoogle}
             isLoading={loading} // Add loading state to button
           >
@@ -103,7 +103,7 @@ function Signin() {
           <Link to="/signup">
             <Button
               radius="full"
-              className="w-full bg-gradient-to-r from-green-600 to-green-500 text-white shadow-lg hover:shadow-2xl transition-shadow duration-300"
+              className="w-full bg-blue-300 text-white shadow-lg hover:shadow-2xl transition-shadow duration-300 mt-2"
             >
               Sign Up
             </Button>

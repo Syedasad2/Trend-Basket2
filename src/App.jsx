@@ -16,7 +16,7 @@ import Signup from "./pages/Signup";
 import ProductDetails from "./pages/ProductDetails"; // Import ProductDetails
 import { CartProvider } from "./context/CartContext";
 import CartPage from "./pages/CartPage";
-
+import Privacy from "./pages/Privacy";
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -81,6 +81,8 @@ function App() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/signin" element={<Signin />} />
               <Route path="/signup" element={<Signup />} />
+              <Route path="/Privacy" element={<Privacy/>} />
+
               <Route path="/cart" element={<CartPage />} /> {/* Add route for CartPage */}
               {/* <Route path="/checkout" element={<CheckoutPage />} /> */}
             </Routes>

@@ -6,36 +6,67 @@ const HomePage = () => {
   return (
     <div className="bg-white text-black min-h-screen flex flex-col">
       {/* Hero Section */}
-      <div className="relative bg-white text-black text-center flex flex-col items-center justify-center min-h-screen px-4 py-12 overflow-hidden">
-        {/* Background with gradient animation */}
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-500 to-pink-500 opacity-60 animate__animated animate__fadeIn animate__delay-0.5s"></div>
+      <div className="relative bg-[#FFEBE2] text-[#2C3E50] text-center flex flex-col items-center justify-center min-h-screen px-6 py-12">
+      {/* Background gradient removed */}
+      <div className="absolute inset-0 bg-gradient-to-r from-white to-[#FFEBE2] opacity-90"></div>
 
-        {/* Animated text entrance */}
-        <div className="relative z-10 max-w-6xl w-full text-center px-4 py-12">
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold mb-6 animate__animated animate__fadeIn animate__delay-1s">
-            Welcome to TrendBasket
-          </h1>
-
-          <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-8 animate__animated animate__fadeIn animate__delay-2s">
-            Discover the best products with amazing discounts.
-          </p>
-
-          <Link to="/products">
-            <button className="bg-white text-black px-8 py-4 text-lg md:text-xl font-semibold rounded-full shadow-lg hover:bg-pink-500 hover:text-white transition-all duration-300 ease-in-out transform hover:scale-110 hover:animate__pulse animate__animated animate__fadeIn animate__delay-3s">
-              Shop Now
-            </button>
-          </Link>
-        </div>
-
-        {/* Floating and bouncing elements */}
-        <div className="absolute z-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate__animated animate__fadeIn animate__delay-4s">
-          <div className="w-40 h-40 bg-pink-300 rounded-full animate__animated animate__bounce animate__infinite"></div>
-        </div>
-
-        <div className="absolute z-0 top-1/4 right-1/4 transform -translate-x-1/4 -translate-y-1/4 animate__animated animate__fadeIn animate__delay-4.5s">
-          <div className="w-32 h-32 bg-purple-400 rounded-full animate__animated animate__bounce animate__infinite"></div>
-        </div>
+      {/* Shopping-related background elements */}
+      <div className="absolute z-0 top-1/4 left-1/4 transform -translate-x-1/4 -translate-y-1/4 opacity-30">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-20 w-20 text-[#FF9A8B] animate__animated animate__fadeIn animate__delay-1s"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M6 2L2 6l4 4" />
+          <path d="M18 22l4-4-4-4" />
+          <path d="M12 14l4-4-4-4" />
+          <path d="M8 8L12 4" />
+          <path d="M16 16L12 12" />
+        </svg>
       </div>
+
+      <div className="absolute z-0 top-2/3 right-1/4 transform translate-x-1/4 translate-y-1/4 opacity-20">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-24 w-24 text-[#FF8C94] animate__animated animate__fadeIn animate__delay-2s"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M21 1l-1 7H4L3 1H1" />
+          <circle cx="12" cy="20" r="5" />
+          <line x1="12" y1="2" x2="12" y2="20" />
+        </svg>
+      </div>
+
+      {/* Main content */}
+      <div className="relative z-10 max-w-6xl w-full text-center px-4 py-16">
+        {/* Heading */}
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold mb-6 animate__animated animate__slideInDown animate__delay-0.5s" style={{ fontFamily: "'Poppins', sans-serif" }}>
+          Welcome to <span className="text-[#FF9A8B]">TrendBasket</span>
+        </h1>
+
+        {/* Subtext */}
+        <p className="text-lg sm:text-2xl md:text-3xl lg:text-4xl text-[#7F8C8D] mb-8 opacity-90 animate__animated animate__fadeIn animate__delay-1s" style={{ fontFamily: "'Lora', serif" }}>
+          Discover top products and exclusive deals designed just for you.
+        </p>
+
+        {/* Shop Now Button */}
+        <Link to="/products">
+          <button className="bg-[#FF9A8B] text-white px-8 py-4 text-lg md:text-xl font-semibold rounded-full shadow-md hover:shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 animate__animated animate__zoomIn animate__delay-1.5s">
+            Shop Now
+          </button>
+        </Link>
+      </div>
+    </div>
 
       {/* Featured Products */}
       <div className="container mx-auto px-4 py-12">

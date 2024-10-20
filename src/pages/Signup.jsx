@@ -1,13 +1,19 @@
 import { Input, Button } from "@nextui-org/react";
 import { useState } from "react";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../utils/firebase"; // Ensure firebase is properly initialized
+import { useNavigate } from "react-router-dom"; // Import useNavigate for redirection
 
 function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const navigate = useNavigate(); // Initialize useNavigate
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Basic validation
@@ -16,14 +22,30 @@ function Signup() {
       return;
     }
 
-    // Simulate signup process
-    console.log('Signed up with:', { username, email, password });
-    setError(''); // Clear error after submission
+    try {
+      setLoading(true);
+      // Firebase createUserWithEmailAndPassword
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      // After successful signup
+      console.log("Signed up with:", user);
+      setError(''); // Clear the error
+
+      // Redirect to home page
+      navigate('/'); // Redirect to home page
+
+    } catch (error) {
+      console.error("Signup error:", error);
+      setError('An error occurred during signup. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-white text-gray-900 w-screen p-4 pt-10">
-      <div className="bg-white p-10 rounded-lg  max-w-md w-full border border-gray-300">
+      <div className="bg-white p-10 rounded-lg max-w-md w-full border border-gray-300">
         <h2 className="text-4xl font-bold mb-8 text-center text-gray-900">Sign Up</h2>
 
         {/* Error message */}
@@ -72,8 +94,9 @@ function Signup() {
             type="submit"
             radius="full"
             className="w-full bg-gradient-to-r from-green-600 to-green-500 text-white shadow-lg hover:shadow-2xl transition-shadow duration-300"
+            disabled={loading}
           >
-            Sign Up
+            {loading ? "Signing Up..." : "Sign Up"}
           </Button>
 
           <h3 className="text-center text-lg text-gray-500 my-4">OR</h3>

@@ -33,19 +33,19 @@ const Footer = () => {
         {/* Footer Links */}
         <div className="flex justify-center space-x-8 mb-8">
           <a
-            href="/about"
+            href="/About"
             className="text-lg font-semibold text-gray-700 hover:text-gray-900 transition duration-300 ease-in-out"
           >
             About Us
           </a>
           <a
-            href="/contact"
+            href="/Contact"
             className="text-lg font-semibold text-gray-700 hover:text-gray-900 transition duration-300 ease-in-out"
           >
             Contact Us
           </a>
           <a
-            href="/privacy"
+            href="/Privacy"
             className="text-lg font-semibold text-gray-700 hover:text-gray-900 transition duration-300 ease-in-out"
           >
             Privacy Policy
