@@ -4,28 +4,42 @@ import "animate.css";
 
 const HomePage = () => {
   return (
-    <div className="bg-gray-900 text-white min-h-screen flex flex-col">
+    <div className="bg-white text-black min-h-screen flex flex-col">
       {/* Hero Section */}
-      <div className="relative bg-gray-800 text-white text-center flex flex-col items-center justify-center min-h-screen px-4 py-12">
-        <div className="absolute inset-0 bg-black opacity-60"></div>
+      <div className="relative bg-white text-black text-center flex flex-col items-center justify-center min-h-screen px-4 py-12 overflow-hidden">
+        {/* Background with gradient animation */}
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-500 to-pink-500 opacity-60 animate__animated animate__fadeIn animate__delay-0.5s"></div>
+
+        {/* Animated text entrance */}
         <div className="relative z-10 max-w-6xl w-full text-center px-4 py-12">
           <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold mb-6 animate__animated animate__fadeIn animate__delay-1s">
             Welcome to TrendBasket
           </h1>
+
           <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-8 animate__animated animate__fadeIn animate__delay-2s">
             Discover the best products with amazing discounts.
           </p>
+
           <Link to="/products">
-            <button className="bg-white text-gray-900 px-8 py-4 text-lg md:text-xl font-semibold rounded-full shadow-lg hover:shadow-2xl transition-shadow duration-300 animate__animated animate__fadeIn animate__delay-3s">
+            <button className="bg-white text-black px-8 py-4 text-lg md:text-xl font-semibold rounded-full shadow-lg hover:bg-pink-500 hover:text-white transition-all duration-300 ease-in-out transform hover:scale-110 hover:animate__pulse animate__animated animate__fadeIn animate__delay-3s">
               Shop Now
             </button>
           </Link>
+        </div>
+
+        {/* Floating and bouncing elements */}
+        <div className="absolute z-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate__animated animate__fadeIn animate__delay-4s">
+          <div className="w-40 h-40 bg-pink-300 rounded-full animate__animated animate__bounce animate__infinite"></div>
+        </div>
+
+        <div className="absolute z-0 top-1/4 right-1/4 transform -translate-x-1/4 -translate-y-1/4 animate__animated animate__fadeIn animate__delay-4.5s">
+          <div className="w-32 h-32 bg-purple-400 rounded-full animate__animated animate__bounce animate__infinite"></div>
         </div>
       </div>
 
       {/* Featured Products */}
       <div className="container mx-auto px-4 py-12">
-        <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-center mb-12 text-white">
+        <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-center mb-12 text-black">
           Featured Products
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
@@ -60,7 +74,7 @@ const HomePage = () => {
 };
 
 const FeaturedProduct = ({ title, image, price, link }) => (
-  <div className="border border-gray-700 rounded-xl shadow-lg overflow-hidden bg-gray-800 hover:shadow-2xl transform hover:scale-105 transition-transform duration-300 w-full max-w-xs mx-auto">
+  <div className="border border-gray-300 rounded-xl shadow-lg overflow-hidden bg-white hover:shadow-2xl transform hover:scale-105 transition-transform duration-300 w-full max-w-xs mx-auto">
     <Link to={link}>
       <img
         alt={title}
@@ -68,8 +82,8 @@ const FeaturedProduct = ({ title, image, price, link }) => (
         src={image}
       />
       <div className="p-6">
-        <h3 className="text-white text-lg sm:text-xl font-semibold mb-2">{title}</h3>
-        <p className="text-gray-400 text-base font-medium">{price}</p>
+        <h3 className="text-black text-lg sm:text-xl font-semibold mb-2">{title}</h3>
+        <p className="text-gray-600 text-base font-medium">{price}</p>
       </div>
     </Link>
   </div>
