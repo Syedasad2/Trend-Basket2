@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { FaHome, FaDollyFlatbed, FaInfoCircle, FaRocketchat, FaSignOutAlt, FaShoppingCart,FaEarlybirds } from 'react-icons/fa';
+import { FaHome, FaDollyFlatbed, FaInfoCircle, FaRocketchat, FaSignOutAlt, FaShoppingCart,FaEarlybirds ,FaEnvelope} from 'react-icons/fa';
 import { AuthContext } from '../context/Authcontext';
 import { useCart } from '../context/CartContext'; 
 
