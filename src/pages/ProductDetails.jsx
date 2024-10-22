@@ -18,6 +18,7 @@ const ProductDetails = () => {
   const [error, setError] = useState(null);
   const [isAdded, setIsAdded] = useState(false);
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
+  const [quantity, setQuantity] = useState(1); // Quantity state for the product
 
   const fetchProduct = useCallback(async () => {
     try {
@@ -44,12 +45,17 @@ const ProductDetails = () => {
     }
 
     if (isAdded) {
-      removeFromCart(product.id);
+      removeFromCart(product.id); // If item is already in cart, remove it
       setIsAdded(false);
     } else {
-      addToCart(product);
+      addToCart(product, quantity); // Pass quantity to addToCart function
       setIsAdded(true);
     }
+  };
+
+  const handleQuantityChange = (e) => {
+    const value = Math.max(1, e.target.value); // Prevent negative or zero quantity
+    setQuantity(value);
   };
 
   const truncateDescription = (description, limit = 100) => {
@@ -61,7 +67,7 @@ const ProductDetails = () => {
   if (error) return <Error message={error} />;
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-50 to-gray-200 p-4">
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-50 to-gray-200 p-4 mt-10">
       <div className="bg-white max-w-4xl w-full p-6 md:p-10 lg:p-12 rounded-lg shadow-lg border border-gray-200">
         <div className="flex flex-col lg:flex-row items-center lg:items-start">
           {/* Image Section */}
@@ -90,17 +96,38 @@ const ProductDetails = () => {
               </button>
             </p>
 
-            {/* Cart Button */}
-            <Button
-              onClick={handleCartAction}
-              className={`px-6 py-3 rounded-full font-semibold text-white transition-all duration-300 ${
-                isAdded
-                  ? "bg-red-600 hover:bg-red-700 shadow-lg"
-                  : "bg-purple-600 hover:bg-purple-700 shadow-lg"
-              }`}
-            >
-              {isAdded ? "Remove from Cart" : "Add to Cart"}
-            </Button>
+            {/* Quantity Selector */}
+            <div className="flex items-center mb-6">
+              <label htmlFor="quantity" className="text-lg font-semibold text-gray-800 mr-4">Quantity:</label>
+              <input
+                type="number"
+                id="quantity"
+                value={quantity}
+                onChange={handleQuantityChange}
+                min="1"
+                className="w-16 p-2 border-2 border-gray-300 rounded-lg text-center focus:outline-none focus:ring-2 focus:ring-purple-400 transition duration-300"
+              />
+            </div>
+
+            {/* Cart and View Cart Buttons */}
+            <div className="flex space-x-4">
+              <Button
+                onClick={handleCartAction}
+                className={`px-6 py-3 rounded-full font-semibold text-white transition-all duration-300 ${
+                  isAdded
+                    ? "bg-red-600 hover:bg-red-700 shadow-lg"
+                    : "bg-purple-600 hover:bg-purple-700 shadow-lg"
+                }`}
+              >
+                {isAdded ? "Remove from Cart" : "Add to Cart"}
+              </Button>
+              <Button
+                onClick={() => navigate("/cart")}
+                className="px-6 py-3 rounded-full font-semibold text-white bg-gray-600 hover:bg-gray-700 shadow-lg transition-all duration-300"
+              >
+                View Cart
+              </Button>
+            </div>
           </div>
         </div>
       </div>

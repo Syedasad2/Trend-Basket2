@@ -1,13 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
-import ProductCard from "./ProductCard";
+import ProductCard from "../components/ProductCard";
+import Search from "../components/search"; 
 
 const ProductList = React.memo(({ posts }) => {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearchChange = (term) => {
+    setSearchTerm(term);
+  };
+
+  const filteredPosts = posts.filter((product) =>
+    product.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
-    <div className="flex flex-wrap justify-center">
-      {posts.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
+    <div className="mt-20 pt-10">
+      {/* Search Bar */}
+      <Search onSearchChange={handleSearchChange} />
+
+      <div className="flex flex-wrap justify-center mt-10">
+        {filteredPosts.length === 0 ? (
+          <p className="text-center text-lg">No products found</p>
+        ) : (
+          filteredPosts.map((product) => <ProductCard key={product.id} product={product} />)
+        )}
+      </div>
     </div>
   );
 });
