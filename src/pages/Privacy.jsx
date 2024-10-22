@@ -3,8 +3,8 @@ import React from 'react';
 function Privacy() {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-gray-100 via-gray-200 to-white text-gray-900 p-6">
-      <div className="bg-white p-10 rounded-3xl  max-w-3xl w-full border border-gray-300">
-        <h1 className="text-4xl font-bold mb-8 text-center text-gray-900 tracking-tight font-poppins">
+      <div className="bg-white p-8 md:p-10 lg:p-12 rounded-3xl max-w-3xl w-full border border-gray-300">
+        <h1 className="text-4xl sm:text-5xl font-bold mb-8 text-center text-gray-900 tracking-tight font-poppins">
           Privacy Policy
         </h1>
 

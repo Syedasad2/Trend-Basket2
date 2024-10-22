@@ -62,21 +62,25 @@ const ProductDetails = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-50 to-gray-200 p-4">
-      <div className="bg-white max-w-md w-full p-6 rounded-lg shadow-lg border border-gray-200">
-        <div className="flex flex-col md:flex-row items-center md:items-start">
-          <div className="w-full md:w-1/2 mb-4 md:mb-0">
+      <div className="bg-white max-w-4xl w-full p-6 md:p-10 lg:p-12 rounded-lg shadow-lg border border-gray-200">
+        <div className="flex flex-col lg:flex-row items-center lg:items-start">
+          {/* Image Section */}
+          <div className="w-full lg:w-1/2 mb-6 lg:mb-0">
             <img
               src={product.image}
               alt={product.title}
-              className="w-full h-48 object-cover object-center rounded-lg shadow-md transition-transform duration-300 transform hover:scale-105"
+              className="w-full h-64 object-cover object-center rounded-lg shadow-md transition-transform duration-300 transform hover:scale-105"
             />
           </div>
-          <div className="w-full md:w-1/2 md:pl-6 flex flex-col">
-            <h1 className="text-2xl font-semibold text-gray-900 mb-2">{product.title}</h1>
-            <p className="text-sm text-gray-600 mb-2">{product.category}</p>
-            <p className="text-xl font-bold text-gray-800 mb-3">${product.price}</p>
 
-            <p className="text-sm text-gray-700 mb-4">
+          {/* Product Details Section */}
+          <div className="w-full lg:w-1/2 lg:pl-10 flex flex-col">
+            <h1 className="text-3xl lg:text-4xl font-semibold text-gray-900 mb-4">{product.title}</h1>
+            <p className="text-lg text-gray-600 mb-3">{product.category}</p>
+            <p className="text-xl lg:text-2xl font-bold text-gray-800 mb-4">${product.price}</p>
+
+            {/* Description */}
+            <p className="text-sm text-gray-700 mb-6 leading-relaxed">
               {isDescriptionExpanded ? product.description : truncateDescription(product.description)}
               <button
                 onClick={() => setIsDescriptionExpanded(!isDescriptionExpanded)}
@@ -86,9 +90,10 @@ const ProductDetails = () => {
               </button>
             </p>
 
+            {/* Cart Button */}
             <Button
               onClick={handleCartAction}
-              className={`px-4 py-2 rounded-full font-semibold text-white transition-all duration-300 ${
+              className={`px-6 py-3 rounded-full font-semibold text-white transition-all duration-300 ${
                 isAdded
                   ? "bg-red-600 hover:bg-red-700 shadow-lg"
                   : "bg-purple-600 hover:bg-purple-700 shadow-lg"

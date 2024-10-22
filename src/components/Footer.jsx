@@ -4,7 +4,7 @@ import { FaFacebookF, FaTwitter, FaInstagram, FaHeart } from 'react-icons/fa';
 const Footer = () => {
   return (
     <footer className="bg-white text-gray-800 py-12 border-t border-gray-300">
-      <div className="container mx-auto text-center">
+      <div className="container mx-auto text-center px-4">
         {/* Footer Header */}
         <h2 className="text-3xl font-bold text-gray-900 mb-6">Stay Connected</h2>
 
@@ -31,22 +31,22 @@ const Footer = () => {
         </div>
 
         {/* Footer Links */}
-        <div className="flex justify-center space-x-8 mb-8">
+        <div className="flex justify-center space-x-8 mb-8 text-sm md:text-lg">
           <a
             href="/About"
-            className="text-lg font-semibold text-gray-700 hover:text-gray-900 transition duration-300 ease-in-out"
+            className="font-semibold text-gray-700 hover:text-gray-900 transition duration-300 ease-in-out"
           >
             About Us
           </a>
           <a
             href="/Contact"
-            className="text-lg font-semibold text-gray-700 hover:text-gray-900 transition duration-300 ease-in-out"
+            className="font-semibold text-gray-700 hover:text-gray-900 transition duration-300 ease-in-out"
           >
             Contact Us
           </a>
           <a
             href="/Privacy"
-            className="text-lg font-semibold text-gray-700 hover:text-gray-900 transition duration-300 ease-in-out"
+            className="font-semibold text-gray-700 hover:text-gray-900 transition duration-300 ease-in-out"
           >
             Privacy Policy
           </a>
@@ -55,11 +55,11 @@ const Footer = () => {
         {/* Newsletter Subscription */}
         <div className="mb-8">
           <p className="text-xl font-semibold text-gray-900 mb-4">Subscribe to Our Newsletter</p>
-          <div className="flex justify-center">
+          <div className="flex justify-center flex-col md:flex-row items-center md:space-x-2">
             <input
               type="email"
               placeholder="Enter your email"
-              className="p-4 w-80 rounded-l-full border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out"
+              className="p-4 w-80 md:w-96 rounded-l-full border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out mb-4 md:mb-0"
             />
             <button className="bg-blue-600 text-white p-4 rounded-r-full hover:bg-blue-700 transition duration-300 ease-in-out">
               Subscribe

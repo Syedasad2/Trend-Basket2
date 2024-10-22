@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { FaHome, FaDollyFlatbed, FaInfoCircle, FaRocketchat, FaSignOutAlt, FaShoppingCart,FaEarlybirds ,FaEnvelope} from 'react-icons/fa';
+import { FaHome, FaDollyFlatbed, FaInfoCircle, FaRocketchat, FaSignOutAlt, FaShoppingCart, FaEarlybirds, FaEnvelope } from 'react-icons/fa';
 import { AuthContext } from '../context/Authcontext';
 import { useCart } from '../context/CartContext'; 
 
@@ -8,12 +8,8 @@ const Navbar = () => {
   const { user, handleSignOut } = useContext(AuthContext);
   const { cart } = useCart(); 
 
-  const [isCartOpen, setIsCartOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-
-  const toggleCartDropdown = () => {
-    setIsCartOpen(!isCartOpen);
-  };
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // For mobile menu toggle
 
   const handleScroll = () => {
     if (window.scrollY > 50) {
@@ -21,6 +17,10 @@ const Navbar = () => {
     } else {
       setIsScrolled(false);
     }
+  };
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
   useEffect(() => {
@@ -37,21 +37,33 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto flex justify-between items-center p-4">
+        {/* Brand Logo */}
         <Link to="/" className="text-3xl font-bold flex items-center tracking-wider hover:text-gray-300 transition-colors">
           <FaEarlybirds className="mr-2 text-orange-600" />
           <span className="text-orange-600">Trend Basket</span>
         </Link>
 
-        <ul className="flex space-x-8 items-center">
+        {/* Hamburger Menu for Mobile */}
+        <div className="md:hidden flex items-center">
+          <button onClick={toggleMenu} className="text-3xl">
+            &#9776;
+          </button>
+        </div>
+
+        {/* Navigation Links */}
+        <ul
+          className={`md:flex md:space-x-8 items-center transition-all duration-300 ease-in-out ${
+            isMenuOpen ? 'flex flex-col absolute top-16 left-0 w-full bg-white shadow-lg z-50 md:relative md:flex-row md:space-x-8' : 'hidden md:flex'
+          }`}
+        >
           <NavItem to="/" icon={<FaHome />} label="Home" />
           <NavItem to="/products" icon={<FaDollyFlatbed />} label="Products" />
           <NavItem to="/about" icon={<FaInfoCircle />} label="About" />
           <NavItem to="/contact" icon={<FaRocketchat />} label="Contact" />
 
-          {/* Cart Dropdown */}
-          <li className="relative">
-            <button 
-              onClick={toggleCartDropdown} 
+          {/* Cart Dropdown - Hover enabled */}
+          <li className="relative group">
+            <button
               className="flex items-center text-lg font-semibold hover:text-orange-500 transition-all relative"
             >
               <FaShoppingCart className="mr-2 text-orange-600" />
@@ -62,42 +74,39 @@ const Navbar = () => {
               )}
             </button>
 
-            {isCartOpen && (
-              <div className="absolute right-0 mt-2 w-64 bg-white text-black shadow-lg rounded-lg border border-gray-300 z-40">
-                <ul className="max-h-60 overflow-y-auto">
-                  {cart.length === 0 ? (
-                    <li className="p-4 text-center text-red-600">Your cart is empty.</li>
-                  ) : (
-                    cart.map((item) => (
-                      <li key={item.id} className="flex items-center p-4 border-b border-gray-200 hover:bg-gray-100">
-                        <img src={item.image} alt={item.title} className="w-16 h-16 object-cover rounded-md mr-4" />
-                        <div className="flex-1">
-                          <p className="text-sm font-semibold text-gray-800">{item.title}</p>
-                          <p className="text-xs text-gray-600">${item.price}</p>
-                        </div>
-                      </li>
-                    ))
-                  )}
-                </ul>
-                <Link to="/cart" className="block text-center p-2 bg-green-600 text-white rounded-b-lg hover:bg-green-700 transition-all">
-                  View Cart
-                </Link>
-              </div>
-            )}
+            {/* Hover dropdown */}
+            <div className="absolute right-0 mt-2 w-64 bg-white text-black shadow-lg rounded-lg border border-gray-300 z-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out transform group-hover:scale-105">
+              <ul className="max-h-60 overflow-y-auto">
+                {cart.length === 0 ? (
+                  <li className="p-4 text-center text-red-600">Your cart is empty.</li>
+                ) : (
+                  cart.map((item) => (
+                    <li key={item.id} className="flex items-center p-4 border-b border-gray-200 hover:bg-gray-100 transition-all duration-300 ease-in-out cursor-pointer">
+                      <img src={item.image} alt={item.title} className="w-16 h-16 object-cover rounded-md mr-4" />
+                      <div className="flex-1">
+                        <p className="text-sm font-semibold text-gray-800 truncate">{item.title}</p>
+                        <p className="text-xs text-gray-600">${item.price}</p>
+                      </div>
+                    </li>
+                  ))
+                )}
+              </ul>
+              <Link to="/cart" className="block text-center p-2 bg-green-600 text-white rounded-b-lg hover:bg-green-700 transition-all">
+                View Cart
+              </Link>
+            </div>
           </li>
 
           {/* Auth section */}
           {user.isLogin ? (
-            <>
-              <li>
-                <button
-                  onClick={handleSignOut}
-                  className="flex items-center text-lg font-semibold hover:text-gray-300 transition-colors"
-                >
-                  <FaSignOutAlt className="mr-2 text-gray-300" /> Log Out
-                </button>
-              </li>
-            </>
+            <li>
+              <button
+                onClick={handleSignOut}
+                className="flex items-center text-lg font-semibold hover:text-gray-300 transition-colors"
+              >
+                <FaSignOutAlt className="mr-2 text-gray-300" /> Log Out
+              </button>
+            </li>
           ) : (
             <li>
               <Link to="/signin" className="flex items-center text-lg font-semibold hover:text-gray-300 transition-colors">
