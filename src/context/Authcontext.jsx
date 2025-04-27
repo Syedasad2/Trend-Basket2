@@ -1,7 +1,7 @@
 import { Spinner } from "@nextui-org/react";
 import { createContext, useState, useEffect } from "react";
 import { onAuthStateChanged, signOut, createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../utils/firebase"; // Adjust the path as necessary
+import { auth } from "../utils/firebase"; 
 
 const AuthContext = createContext();
 
@@ -12,9 +12,9 @@ function AuthContextProvider({ children }) {
   });
 
   const [loading, setLoading] = useState(true);
-  const [signUpError, setSignUpError] = useState(""); // State to handle errors during signup
+  const [signUpError, setSignUpError] = useState(""); 
 
-  // Handle authentication state change (login/logout)
+
   function onAuthChanged(user) {
     if (user) {
       setUser({
@@ -36,7 +36,7 @@ function AuthContextProvider({ children }) {
 
   useEffect(() => {
     const subscriber = onAuthStateChanged(auth, onAuthChanged);
-    return () => subscriber(); // Clean up on component unmount
+    return () => subscriber(); 
   }, []);
 
   // Sign out function
@@ -55,7 +55,6 @@ function AuthContextProvider({ children }) {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // Update the user profile with username (optional)
       await user.updateProfile({
         displayName: username,
       });
@@ -72,7 +71,7 @@ function AuthContextProvider({ children }) {
       setLoading(false);
     } catch (error) {
       setLoading(false);
-      setSignUpError(error.message); // Set signup error if any
+      setSignUpError(error.message); 
       console.error("Sign up error:", error);
     }
   };

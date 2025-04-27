@@ -30,7 +30,7 @@ function Signup() {
       setError('');
 
       // Redirect to home page
-      navigate('/'); // Redirect to home page
+      navigate('/');
     } catch (error) {
       console.error("Signup error:", error);
       setError('An error occurred during signup. Please try again.');

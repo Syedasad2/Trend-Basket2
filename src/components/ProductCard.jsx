@@ -29,7 +29,7 @@ const ProductCard = React.memo(({ product }) => {
         <p className="text-gray-900 text-lg font-bold">${product.price}</p>
       </div>
 
-      {/* Action Buttons (Favorites and Cart) */}
+      {/* Action Buttons */}
       <div className="absolute top-4 right-4 flex space-x-2 z-10">
         <button
           aria-label={`Add ${product.title} to favorites`}

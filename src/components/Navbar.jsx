@@ -9,7 +9,7 @@ const Navbar = () => {
   const { cart } = useCart(); 
 
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // For mobile menu toggle
+  const [isMenuOpen, setIsMenuOpen] = useState(false); 
 
   const handleScroll = () => {
     if (window.scrollY > 50) {
@@ -43,7 +43,7 @@ const Navbar = () => {
           <span className="text-orange-600">Trend Basket</span>
         </Link>
 
-        {/* Hamburger Menu for Mobile */}
+      
         <div className="md:hidden flex items-center">
           <button onClick={toggleMenu} className="text-3xl">
             &#9776;

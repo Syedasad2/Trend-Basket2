@@ -11,14 +11,14 @@ import { AuthContext } from '../context/Authcontext';
 const ProductDetails = () => {
   const { id } = useParams();
   const { addToCart, removeFromCart, isInCart } = useCart();
-  const { user } = useContext(AuthContext); // Access user information from AuthContext
-  const navigate = useNavigate(); // For navigation purposes
+  const { user } = useContext(AuthContext); 
+  const navigate = useNavigate(); 
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isAdded, setIsAdded] = useState(false);
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
-  const [quantity, setQuantity] = useState(1); // Quantity state for the product
+  const [quantity, setQuantity] = useState(1);
 
   const fetchProduct = useCallback(async () => {
     try {
@@ -39,22 +39,21 @@ const ProductDetails = () => {
 
   const handleCartAction = () => {
     if (!user.isLogin) {
-      // Redirect to login page if not logged in
       navigate('/signin');
       return;
     }
 
     if (isAdded) {
-      removeFromCart(product.id); // If item is already in cart, remove it
+      removeFromCart(product.id); 
       setIsAdded(false);
     } else {
-      addToCart(product, quantity); // Pass quantity to addToCart function
+      addToCart(product, quantity); 
       setIsAdded(true);
     }
   };
 
   const handleQuantityChange = (e) => {
-    const value = Math.max(1, e.target.value); // Prevent negative or zero quantity
+    const value = Math.max(1, e.target.value); 
     setQuantity(value);
   };
 
@@ -109,7 +108,7 @@ const ProductDetails = () => {
               />
             </div>
 
-            {/* Cart and View Cart Buttons */}
+            {/* Cart */}
             <div className="flex space-x-4">
               <Button
                 onClick={handleCartAction}

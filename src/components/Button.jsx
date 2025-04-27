@@ -21,7 +21,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-  bgColor: "#007bff", // Default color if none provided
+  bgColor: "#007bff", 
 };
 
 export default Button;
