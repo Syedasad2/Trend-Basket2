@@ -6,7 +6,7 @@
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-/* :root {
+/* /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -60,5 +60,5 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-}
+} */
 

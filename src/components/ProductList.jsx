@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import ProductCard from "../components/ProductCard";
-import Search from "./search"; 
+import Search from "../components/Search"; 
 
 const ProductList = React.memo(({ posts }) => {
   const [searchTerm, setSearchTerm] = useState("");
