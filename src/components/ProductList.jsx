@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import ProductCard from "../components/ProductCard";
-import Search from "../components/Search"; 
 
 const ProductList = React.memo(({ posts }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
-  const handleSearchChange = (term) => {
-    setSearchTerm(term);
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
   };
 
   const filteredPosts = posts.filter((product) =>
@@ -16,14 +15,24 @@ const ProductList = React.memo(({ posts }) => {
 
   return (
     <div className="mt-20 pt-10">
-      {/* Search Bar */}
-      <Search onSearchChange={handleSearchChange} />
+      {/* Direct Input Field for Search */}
+      <div className="flex justify-center">
+        <input
+          type="text"
+          placeholder="Search products..."
+          className="border border-gray-400 rounded-lg p-2 w-72"
+          value={searchTerm}
+          onChange={handleSearchChange}
+        />
+      </div>
 
       <div className="flex flex-wrap justify-center mt-10">
         {filteredPosts.length === 0 ? (
           <p className="text-center text-lg">No products found</p>
         ) : (
-          filteredPosts.map((product) => <ProductCard key={product.id} product={product} />)
+          filteredPosts.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))
         )}
       </div>
     </div>
