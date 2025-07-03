@@ -12,7 +12,7 @@ const HomePage = () => {
         <div className="absolute z-0 top-1/4 left-1/4 transform -translate-x-1/4 -translate-y-1/4 opacity-30">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-20 w-20 text-[#FF9A8B] animate__animated animate__fadeIn animate__delay-1s"
+            className="h-20 w-20 text-[#af884d] animate__animated animate__fadeIn animate__delay-1s"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
