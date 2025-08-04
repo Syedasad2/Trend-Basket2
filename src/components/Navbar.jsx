@@ -32,15 +32,15 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`bg-white text-orange-900 fixed top-0 w-full z-50 transition-transform ${
+      className={`bg-white text-green-500 fixed top-0 w-full z-50 transition-transform ${
         isScrolled ? '-translate-y-full' : 'translate-y-0'
       }`}
     >
       <div className="container mx-auto flex justify-between items-center p-4">
         {/* Brand Logo */}
         <Link to="/" className="text-3xl font-bold flex items-center tracking-wider hover:text-gray-300 transition-colors">
-          <FaEarlybirds className="mr-2 text-orange-600" />
-          <span className="text-orange-600">Trend Basket</span>
+          <FaEarlybirds className="mr-2 text-green-500" />
+          <span className="text-green-600">Trend Basket</span>
         </Link>
 
       
@@ -64,11 +64,11 @@ const Navbar = () => {
           {/* Cart Dropdown - Hover enabled */}
           <li className="relative group">
             <button
-              className="flex items-center text-lg font-semibold hover:text-orange-500 transition-all relative"
+              className="flex items-center text-lg font-semibold hover:text-white transition-all relative"
             >
-              <FaShoppingCart className="mr-2 text-orange-600" />
+              <FaShoppingCart className="mr-2 text-green-600" />
               {cart.length > 0 && (
-                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center animate-pulse">
+                <span className="absolute -top-2 -right-2 bg-green-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center animate-pulse">
                   {cart.length}
                 </span>
               )}
@@ -104,7 +104,7 @@ const Navbar = () => {
                 onClick={handleSignOut}
                 className="flex items-center text-lg font-semibold hover:text-gray-300 transition-colors"
               >
-                <FaSignOutAlt className="mr-2 text-gray-300" /> Log Out
+                <FaSignOutAlt className="mr-2 text-red-800" /> Log Out
               </button>
             </li>
           ) : (
@@ -124,7 +124,7 @@ const NavItem = ({ to, icon, label }) => (
   <li>
     <Link
       to={to}
-      className="flex items-center text-lg font-semibold text-orange-900 hover:text-orange-500 transition-all relative"
+      className="flex items-center text-lg font-semibold text-green-600 hover:text-gray-500 transition-all relative"
     >
       {icon}
       <span className="ml-2">{label}</span>

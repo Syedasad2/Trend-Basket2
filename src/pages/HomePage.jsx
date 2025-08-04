@@ -6,13 +6,13 @@ const HomePage = () => {
   return (
     <div className="bg-white text-black min-h-screen flex flex-col">
       {/* Hero Section */}
-      <div className="relative bg-[#FFEBE2] text-[#2C3E50] text-center flex flex-col items-center justify-center min-h-screen px-6 py-12">
+      <div className="relative bg-[#19842b] text-[#2C3E50] text-center flex flex-col items-center justify-center min-h-screen px-6 py-12">
         <div className="absolute inset-0 bg-gradient-to-r from-white to-[#FFEBE2] opacity-90"></div>
 
         <div className="absolute z-0 top-1/4 left-1/4 transform -translate-x-1/4 -translate-y-1/4 opacity-30">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-20 w-20 text-[#af884d] animate__animated animate__fadeIn animate__delay-1s"
+            className="h-20 w-20 text-[#25a131] animate__animated animate__fadeIn animate__delay-1s"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -31,7 +31,7 @@ const HomePage = () => {
         <div className="absolute z-0 top-2/3 right-1/4 transform translate-x-1/4 translate-y-1/4 opacity-20">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-24 w-24 text-[#FF8C94] animate__animated animate__fadeIn animate__delay-2s"
+            className="h-24 w-24 text-[#1c831f] animate__animated animate__fadeIn animate__delay-2s"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -49,7 +49,7 @@ const HomePage = () => {
         <div className="relative z-10 max-w-6xl w-full text-center px-4 py-16">
           {/* Heading */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold mb-6 animate__animated animate__slideInDown animate__delay-0.5s" style={{ fontFamily: "'Poppins', sans-serif" }}>
-            Welcome to <span className="text-[#FF9A8B]">TrendBasket</span>
+            Welcome to <span className="text-[#f2f5f3]">TrendBasket</span>
           </h1>
 
           {/* Subtext */}
@@ -59,7 +59,7 @@ const HomePage = () => {
 
           {/* Shop Now Button */}
           <Link to="/products">
-            <button className="bg-[#FF9A8B] text-white px-8 py-4 text-lg md:text-xl font-semibold rounded-full shadow-md hover:shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 animate__animated animate__zoomIn animate__delay-1.5s">
+            <button className="bg-[#198449] text-white px-8 py-4 text-lg md:text-xl font-semibold rounded-full shadow-md hover:shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 animate__animated animate__zoomIn animate__delay-1.5s">
               Shop Now
             </button>
           </Link>
