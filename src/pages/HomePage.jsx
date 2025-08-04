@@ -49,7 +49,7 @@ const HomePage = () => {
         <div className="relative z-10 max-w-6xl w-full text-center px-4 py-16">
           {/* Heading */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold mb-6 animate__animated animate__slideInDown animate__delay-0.5s" style={{ fontFamily: "'Poppins', sans-serif" }}>
-            Welcome to <span className="text-[#f2f5f3]">TrendBasket</span>
+            Welcome to <span className="text-[#9cecb6]">TrendBasket</span>
           </h1>
 
           {/* Subtext */}
