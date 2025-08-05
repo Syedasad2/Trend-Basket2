@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import Search from './components/Search'
+import Search from './components/Search'
 import axios from 'axios'; 
 import ProductList from "./components/ProductList";
 import LoadingSpinner from "./components/LoadingSpinner";
