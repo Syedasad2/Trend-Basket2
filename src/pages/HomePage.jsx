@@ -111,7 +111,7 @@ const FeaturedProduct = ({ title, image, price, link }) => (
         src={image}
       />
       <div className="p-6">
-        <h3 className="text-black text-lg sm:text-xl font-semibold mb-2">{title}</h3>
+        <h3 className="text-gray-600 text-lg sm:text-xl font-semibold mb-2">{title}</h3>
         <p className="text-gray-600 text-base font-medium">{price}</p>
       </div>
     </Link>
