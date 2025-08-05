@@ -102,7 +102,7 @@ const Navbar = () => {
             <li>
               <button
                 onClick={handleSignOut}
-                className="flex items-center text-lg font-semibold hover:text-gray-300 transition-colors"
+                className="flex items-center text-lg font-semibold hover:text-gray-300 transition-colors text-red-500"
               >
                 <FaSignOutAlt className="mr-2 text-red-800" /> Log Out
               </button>
